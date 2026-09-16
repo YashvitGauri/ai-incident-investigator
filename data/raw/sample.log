@@ -1,0 +1,7 @@
+2026-09-16 14:03:12 INFO Login failed user=alice ip=192.168.1.20
+2026-09-16 14:03:14 INFO Login failed user=alice ip=192.168.1.20
+2026-09-16 14:03:16 INFO Login failed user=alice ip=192.168.1.20
+2026-09-16 14:04:01 INFO Login successful user=alice ip=192.168.1.20
+2026-09-16 14:04:13 INFO API request user=alice endpoint=/admin/users
+2026-09-16 14:05:02 INFO API request user=alice endpoint=/profile
+2026-09-16 14:06:21 WARN Login failed user=bob ip=10.0.0.15
