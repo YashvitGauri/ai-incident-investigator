@@ -1,4 +1,4 @@
-from parser import parse_log_line
+from app.parser import parse_log_line
 
 
 def read_logs(file_path):

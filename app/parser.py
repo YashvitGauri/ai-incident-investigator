@@ -1,5 +1,5 @@
 import re
-from models import Event
+from app.models import Event
 
 def parse_message(message):
     event = {}
