@@ -1,5 +1,5 @@
 import re
-
+from models import Event
 
 def parse_message(message):
     event = {}
@@ -43,11 +43,18 @@ def parse_log_line(line):
     parsed = match.groupdict()
     event = parse_message(parsed["message"])
 
-    return {
-        "timestamp": parsed["timestamp"],
-        "level": parsed["level"],
-        **event
+    return Event(
+    timestamp=parsed["timestamp"],
+    level=parsed["level"],
+    event_type=event.get("event_type", "unknown"),
+    user=event.get("user"),
+    ip=event.get("ip"),
+    metadata={
+        key: value
+        for key, value in event.items()
+        if key not in {"event_type", "user", "ip"}
     }
+)
 
 
 if __name__ == "__main__":
