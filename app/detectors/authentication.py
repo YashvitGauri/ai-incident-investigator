@@ -1,7 +1,8 @@
 from datetime import datetime, timedelta
+from app.models import Finding
 
 
-def detect_suspicious_login(events):
+def detect(events):
     events = sorted(events, key=lambda event: event.timestamp)
 
     suspicious_sequences = []
@@ -34,12 +35,16 @@ def detect_suspicious_login(events):
 
         if len(recent_failures) >= 3:
             suspicious_sequences.append(
-                {
-                    "type": "suspicious_login_sequence",
-                    "user": event.user,
-                    "ip": event.ip,
-                    "evidence": recent_failures + [event],
-                }
+                Finding(
+                    type="suspicious_login_sequence",
+                    user=event.user,
+                    ip=event.ip,
+                    description=(
+                        f"{event.user} had {len(recent_failures)} failed login attempts "
+                        f"from {event.ip} followed by a successful login."
+                    ),
+                    evidence=recent_failures + [event],
+                )
             )
 
     return suspicious_sequences
@@ -50,7 +55,7 @@ if __name__ == "__main__":
 
     events = read_logs("data/raw/sample.log")
 
-    findings = detect_suspicious_login(events)
+    findings = detect(events)
 
     for finding in findings:
         print(finding)
