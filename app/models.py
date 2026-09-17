@@ -17,3 +17,8 @@ class Finding:
     ip: str | None = None
     description: str = ""
     evidence: list[Event] = field(default_factory=list)
+
+@dataclass
+class Incident:
+    id: str
+    findings: list[Finding] = field(default_factory=list)
