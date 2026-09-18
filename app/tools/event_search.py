@@ -33,6 +33,21 @@ def create_event_search_tool(events: list[Event]):
                 f"metadata={event.metadata}"
             )
 
-        return results
+        search_scope = []
+
+        if user is not None:
+            search_scope.append(f"user={user}")
+
+        if ip is not None:
+            search_scope.append(f"ip={ip}")
+
+        scope = ", ".join(search_scope) if search_scope else "all events"
+
+        return [
+            f"Search scope: {scope}",
+            f"Matching events: {len(results)}",
+            "Events:",
+            *results,
+        ]
 
     return search_events

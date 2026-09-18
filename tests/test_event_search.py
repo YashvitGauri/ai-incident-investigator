@@ -26,8 +26,9 @@ def test_search_events_by_user():
         "user": "alice"
     })
 
-    assert len(results) == 1
-    assert "user=alice" in results[0]
+    assert "Search scope: user=alice" in results
+    assert "Matching events: 1" in results
+    assert any("user=alice" in result for result in results)
 
 
 def test_search_events_by_ip():
@@ -54,5 +55,6 @@ def test_search_events_by_ip():
         "ip": "10.0.0.15"
     })
 
-    assert len(results) == 1
-    assert "user=bob" in results[0]
+    assert "Search scope: ip=10.0.0.15" in results
+    assert "Matching events: 1" in results
+    assert any("user=bob" in result for result in results)

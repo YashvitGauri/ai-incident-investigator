@@ -1,26 +1,29 @@
+from app.models import Event
 from app.pipeline import investigate_log_file
 
 
 def test_investigate_log_file(monkeypatch):
-    def fake_investigate(incident):
-        return {
-            "incident_id": incident.id,
-            "finding_count": len(incident.findings),
-        }
+    def fake_investigate_events(events):
+        assert len(events) == 7
+
+        assert events[0] == Event(
+            timestamp="2026-09-16 14:03:12",
+            level="INFO",
+            event_type="login_failed",
+            user="alice",
+            ip="192.168.1.20",
+        )
+
+        assert events[3].event_type == "login_success"
+        assert events[4].event_type == "api_request"
+
+        return ["fake-report"]
 
     monkeypatch.setattr(
-        "app.pipeline.investigate",
-        fake_investigate,
+        "app.pipeline.investigate_events",
+        fake_investigate_events,
     )
 
-    reports = investigate_log_file(
-        "data/raw/sample.log"
-    )
+    result = investigate_log_file("data/raw/sample.log")
 
-    assert len(reports) == 1
-
-    incident, report = reports[0]
-
-    assert incident.id == "INC-0001"
-    assert len(incident.findings) == 2
-    assert report["incident_id"] == "INC-0001"
+    assert result == ["fake-report"]
