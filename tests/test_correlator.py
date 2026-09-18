@@ -41,6 +41,7 @@ def test_correlate_findings_by_user():
     assert len(incidents) == 1
     assert incidents[0].id == "INC-0001"
     assert len(incidents[0].findings) == 2
+    assert incidents[0].severity == "High"
 
 
 def test_keep_different_users_separate():

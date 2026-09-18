@@ -101,6 +101,13 @@ def investigate_with_agent(
     prompt = f"""
     Investigate incident {incident.id}.
 
+    The application has already calculated the incident severity:
+
+    Incident severity: {incident.severity}
+
+    This severity is determined by application rules and is authoritative.
+    Do not change, reinterpret, or recalculate the severity.
+
     Current findings and evidence:
 
     {chr(10).join(findings_text)}
@@ -121,6 +128,11 @@ def investigate_with_agent(
         "recommended_actions": ["string"],
         "uncertainty": "string"
     }}
+
+    The "severity" field MUST contain exactly the incident severity
+    provided by the application.
+
+    Do not determine, recalculate, or change the severity yourself.
 
     Important:
     - observed_evidence must contain only directly observed facts.
@@ -143,6 +155,10 @@ def investigate_with_agent(
 
     final_message = result["messages"][-1]
 
-    return parse_investigation_report(
+    report = parse_investigation_report(
         final_message.content
+    )
+
+    return report.model_copy(
+        update={"severity": incident.severity}
     )

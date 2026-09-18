@@ -22,3 +22,4 @@ class Finding:
 class Incident:
     id: str
     findings: list[Finding] = field(default_factory=list)
+    severity: str = "Low"

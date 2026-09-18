@@ -1,4 +1,5 @@
 from app.models import Finding, Incident
+from app.severity import calculate_severity
 
 
 def correlate_findings(findings: list[Finding]) -> list[Incident]:
@@ -18,11 +19,16 @@ def correlate_findings(findings: list[Finding]) -> list[Incident]:
 
         if matching_incident:
             matching_incident.findings.append(finding)
+            matching_incident.severity = calculate_severity(
+                matching_incident.findings
+            )
+
         else:
             incidents.append(
                 Incident(
                     id=f"INC-{len(incidents) + 1:04d}",
                     findings=[finding],
+                    severity=calculate_severity([finding]),
                 )
             )
 

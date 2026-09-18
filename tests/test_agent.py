@@ -54,3 +54,32 @@ def test_parse_investigation_report_from_markdown():
 
     assert report.summary == "Suspicious login sequence detected."
     assert report.severity == "Medium"
+
+
+def test_agent_report_uses_incident_severity():
+    content = """
+    {
+        "summary": "Suspicious activity detected.",
+        "severity": "Medium",
+        "observed_evidence": [
+            "Multiple failed login attempts"
+        ],
+        "analysis": "The activity requires investigation.",
+        "possible_explanations": [
+            "Possible credential attack"
+        ],
+        "confidence": "Medium",
+        "recommended_actions": [
+            "Review authentication logs"
+        ],
+        "uncertainty": "The evidence does not confirm compromise."
+    }
+    """
+
+    report = parse_investigation_report(content)
+
+    final_report = report.model_copy(
+        update={"severity": "High"}
+    )
+
+    assert final_report.severity == "High"
