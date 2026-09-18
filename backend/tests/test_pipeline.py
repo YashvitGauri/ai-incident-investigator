@@ -24,6 +24,6 @@ def test_investigate_log_file(monkeypatch):
         fake_investigate_events,
     )
 
-    result = investigate_log_file("data/raw/sample.log")
+    result = investigate_log_file("backend/data/raw/sample.log")
 
     assert result == ["fake-report"]

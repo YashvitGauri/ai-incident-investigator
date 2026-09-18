@@ -1,4 +1,5 @@
 import os
+from pathlib import Path
 
 from dotenv import load_dotenv
 from langchain.agents import create_agent
@@ -9,7 +10,9 @@ from app.tools.event_search import create_event_search_tool
 from app.ai.investigator import InvestigationReport
 
 
-load_dotenv()
+BASE_DIR = Path(__file__).resolve().parents[2]
+
+load_dotenv(BASE_DIR / ".env")
 
 api_key = os.getenv("GEMINI_API_KEY")
 
