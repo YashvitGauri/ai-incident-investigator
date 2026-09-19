@@ -91,6 +91,7 @@ function App() {
                   value={logText}
                   onChange={setLogText}
                   disabled={loading}
+                  onError={setError}
                 />
 
                 <div className="mt-5 flex items-center justify-between border-t border-[#172334] pt-5">

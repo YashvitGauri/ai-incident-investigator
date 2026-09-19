@@ -1,6 +1,8 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 
+from fastapi.middleware.cors import CORSMiddleware
+
 from app.pipeline import investigate_log_text
 
 
@@ -8,6 +10,14 @@ app = FastAPI(
     title="AI Incident Investigator",
     description="AI-assisted security incident investigation API",
     version="1.0.0",
+)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 
