@@ -5,6 +5,7 @@ import Sidebar from './components/layout/Sidebar'
 import Header from './components/layout/Header'
 import LogInput from './components/investigation/LogInput'
 import InvestigationButton from './components/investigation/InvestigationButton'
+import InvestigationProgress from './components/investigation/InvestigationProgress'
 import IncidentResults from './components/incidents/IncidentResults'
 
 
@@ -106,6 +107,8 @@ function App() {
               </div>
             </div>
 
+            <InvestigationProgress active={loading} />
+            
             {/* Error */}
             {error && (
               <div className="mt-5 rounded-lg border border-red-400/20 bg-red-400/[0.06] px-4 py-3 text-sm text-red-300">
