@@ -1,0 +1,4 @@
+2026-09-18 10:22:11 INFO Login successful user=bob ip=10.0.0.15
+2026-09-18 10:22:18 INFO API request user=bob endpoint=/profile
+2026-09-18 10:22:31 INFO API request user=bob endpoint=/admin/users
+2026-09-18 10:22:45 INFO API request user=bob endpoint=/admin/export

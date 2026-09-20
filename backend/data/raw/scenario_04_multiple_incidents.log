@@ -1,0 +1,8 @@
+2026-09-18 14:03:12 INFO Login failed user=alice ip=192.168.1.20
+2026-09-18 14:03:14 INFO Login failed user=alice ip=192.168.1.20
+2026-09-18 14:03:16 INFO Login failed user=alice ip=192.168.1.20
+2026-09-18 14:04:01 INFO Login successful user=alice ip=192.168.1.20
+2026-09-18 14:04:13 INFO API request user=alice endpoint=/admin/users
+
+2026-09-18 14:04:20 INFO Login successful user=bob ip=10.0.0.15
+2026-09-18 14:04:31 INFO API request user=bob endpoint=/admin/export

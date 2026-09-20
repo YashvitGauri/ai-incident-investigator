@@ -29,7 +29,7 @@ function IncidentCard({ incident }) {
             </div>
 
             <h2 className="mt-3 text-[22px] font-semibold tracking-[-0.02em] text-slate-100">
-              Suspicious authentication activity
+              {incident.title}
             </h2>
           </div>
 

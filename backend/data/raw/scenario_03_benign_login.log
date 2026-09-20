@@ -1,0 +1,4 @@
+2026-09-18 11:05:12 INFO Login successful user=charlie ip=192.168.1.50
+2026-09-18 11:06:03 INFO API request user=charlie endpoint=/profile
+2026-09-18 11:07:15 INFO API request user=charlie endpoint=/settings
+2026-09-18 11:08:21 INFO Login successful user=diana ip=192.168.1.51

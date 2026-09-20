@@ -1,0 +1,7 @@
+2026-09-18 16:40:02 INFO Login failed user=eve
+2026-09-18 16:40:05 INFO Login failed user=eve
+2026-09-18 16:40:08 INFO Login failed user=eve
+2026-09-18 16:40:21 INFO Login successful user=eve
+2026-09-18 16:40:35 INFO API request user=eve endpoint=/admin/settings
+2026-09-18 16:41:02 INFO API request endpoint=/admin/export
+2026-09-18 16:41:15 INFO Login successful ip=10.20.30.40
