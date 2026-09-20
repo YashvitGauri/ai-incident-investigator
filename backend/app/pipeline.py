@@ -41,34 +41,3 @@ def investigate_events(events):
         reports.append((incident, report))
 
     return reports
-
-
-def investigate_log_text(log_text: str):
-    from app.parser import parse_log_line
-
-    events = []
-
-    for line in log_text.splitlines():
-        line = line.strip()
-
-        if not line:
-            continue
-
-        event = parse_log_line(line)
-
-        if event:
-            events.append(event)
-
-    findings = run_detectors(events)
-    incidents = correlate_findings(findings)
-
-    reports = []
-
-    for incident in incidents:
-        report = investigate_with_agent(
-            incident,
-            events,
-        )
-        reports.append((incident, report))
-
-    return reports
